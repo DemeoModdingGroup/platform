@@ -151,6 +151,36 @@
             "type": "string",
             "description": "The name of the mod.",
             "example": "Demeo Utilities"
+          },
+          "aliases": {
+            "type": "array",
+            "description": "Other names the mod has been known as.",
+            "items":{
+              "type": "string"
+            }
+          },
+          "versions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/modVersion"
+            }
+          },
+          "authors": {
+            "type": "array",
+            "items":{
+              "$ref": "#/components/schemas/author"
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "The mod's description."
+          },
+          "icon": {
+            "type": "string",
+            "description": "URL of the mod's icon."
+          },
+          "platforms": {
+
           }
         }
       },
@@ -179,6 +209,25 @@
             "type": "integer",
             "description": "The id of the mod this version is for."
           },
+          "platforms": {
+            "type": "array",
+            "description": "Platforms supported by the version.",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "PC",
+                "QUEST"
+              ]
+            }
+          },
+          "dependencies": {
+            "type": "array",
+            "description": "List of other mods required by the version.",
+            "items": {
+              "$ref": "#/components/schemas/modRef"
+            }
+          },
           "file": {
             "$ref": "#/components/schemas/file"
           }
@@ -197,6 +246,42 @@
             "type": "string",
             "description": "The URL where the file can be downloaded from.",
             "example": "https://api.demeomods.xyz/v0/file/{hash}/{ModName}.dll"
+          }
+        }
+      },
+      "author": {
+        "title": "Author",
+        "type": "object",
+        "description": "An author of a mod.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The id of the author."
+          },
+          "name": {
+            "type": "string",
+            "description": "The author's name."
+          },
+          "discord": {
+            "type": "string",
+            "description": "The author's Discord UserId"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "URL of the author's avatar"
+          }
+        }
+      },
+      "modRef": {
+        "type": "object",
+        "properties": {
+          "modName": {
+            "type": "string",
+            "description": "Name of mod referenced"
+          },
+          "version": {
+            "type": "string",
+            "description": "Semver Constraint for the required version."
           }
         }
       }
