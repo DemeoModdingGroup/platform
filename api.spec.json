@@ -1,6 +1,6 @@
 {
   "openapi": "3.0.0",
-  "info":{
+  "info": {
     "title": "Demeo Mods API",
     "version": "0.1.0",
     "contact": {
@@ -9,11 +9,11 @@
     }
   },
   "servers": [
-      {
-          "description": "Primary API server",
-          "url": "https://api.demeomods.xyz/v0/",
-          "variables": {}
-      }
+    {
+      "description": "Primary API server",
+      "url": "https://api.demeomods.xyz/v0/",
+      "variables": {}
+    }
   ],
   "tags": [
     {
@@ -21,8 +21,8 @@
       "description": "Metadata related requests"
     },
     {
-        "name": "Mods",
-        "description": "Mod related requests"
+      "name": "Mods",
+      "description": "Mod related requests"
     }
   ],
   "paths": {
@@ -30,7 +30,9 @@
       "get": {
         "operationId": "getMetadata",
         "summary": "Get metadata from the root of the API",
-        "tags": [ "Metadata" ],
+        "tags": [
+          "Metadata"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -39,159 +41,165 @@
       }
     },
     "/mods": {
-        "get": {
-            "tags": ["Mods"],
-            "summary": "",
-            "responses": {
-                "200": {
-                    "description": "OK",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/mod"
-                                }
-                            }
-                        }
-                    }
+      "get": {
+        "tags": [
+          "Mods"
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/mod"
+                  }
                 }
+              }
             }
+          }
         }
+      }
     },
     "/mods/{modId}": {
-        "get": {
-            "tags": ["Mods"],
-            "description": "",
-            "parameters": [
-                {
-                    "in": "path",
-                    "name": "modId",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "OK",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/mod"
-                            }
-                        }
-                    }
-                }
+      "get": {
+        "tags": [
+          "Mods"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "modId",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/mod"
+                }
+              }
+            }
+          }
         }
+      }
     },
     "/versions": {
-        "get": {
-            "tags": ["Mods"],
-            "description": "Get latest versions for provided mods.",
-            "parameters": [
-                {
-                    "in": "query",
-                    "name": "names",
-                    "required": true,
-                    "description": "The names of mods to get versions for.",
-                    "example": "ModName1,ModName2",
-                    "style": "form",
-                    "schema": {
-                        "type": "string"
-                    }
-                },
-                {
-                    "in": "query",
-                    "name": "includeUnapproved",
-                    "required": false,
-                    "description": "Whether or not to include unapproved versions.",
-                    "schema": {
-                        "type": "boolean",
-                        "default": "false"
-                    }
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "OK",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/modVersion"
-                                }
-                            }
-                        }
-                    }
-                }
+      "get": {
+        "tags": [
+          "Mods"
+        ],
+        "description": "Get latest versions for provided mods.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "names",
+            "required": true,
+            "description": "The names of mods to get versions for.",
+            "example": "ModName1,ModName2",
+            "style": "form",
+            "schema": {
+              "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "includeUnapproved",
+            "required": false,
+            "description": "Whether or not to include unapproved versions.",
+            "schema": {
+              "type": "boolean",
+              "default": "false"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/modVersion"
+                  }
+                }
+              }
+            }
+          }
         }
+      }
     }
   },
   "components": {
-      "schemas": {
-          "mod": {
-              "title": "Mod",
-              "type": "object",
-              "description": "A single mod.",
-              "properties": {
-                  "name": {
-                      "type": "string",
-                      "description": "The name of the mod.",
-                      "example": "Demeo Utilities"
-                  }
-              }
+    "schemas": {
+      "mod": {
+        "title": "Mod",
+        "type": "object",
+        "description": "A single mod.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the mod.",
+            "example": "Demeo Utilities"
+          }
+        }
+      },
+      "modVersion": {
+        "title": "Mod Version",
+        "type": "object",
+        "description": "A mod's version.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "An int id for the version."
           },
-          "modVersion": {
-              "title": "Mod Version",
-              "type": "object",
-              "description": "A mod's version.",
-              "properties": {
-                  "id": {
-                      "type": "integer",
-                      "description": "An int id for the version."
-                  },
-                  "approved": {
-                      "type": "boolean",
-                      "description": "Whether or not the version has been approved by staff."
-                  },
-                  "name":{
-                      "type": "string",
-                      "description": "The version name."
-                  },
-                  "modName": {
-                      "type": "string",
-                      "description": "The name of the mod this version is for."
-                  },
-                  "modId": {
-                      "type": "integer",
-                      "description": "The id of the mod this version is for."
-                  },
-                  "file": {
-                      "$ref": "#/components/schemas/file"
-                  }
-              }
+          "approved": {
+            "type": "boolean",
+            "description": "Whether or not the version has been approved by staff."
+          },
+          "name": {
+            "type": "string",
+            "description": "The version name."
+          },
+          "modName": {
+            "type": "string",
+            "description": "The name of the mod this version is for."
+          },
+          "modId": {
+            "type": "integer",
+            "description": "The id of the mod this version is for."
           },
           "file": {
-              "title": "File",
-              "type": "object",
-              "description": "A file for a mod or mod version.",
-              "properties": {
-                "hash": {
-                    "type": "string",
-                    "description": "File hash as shown in MelonLoader"
-                },
-                "url": {
-                    "type": "string",
-                    "description": "The URL where the file can be downloaded from.",
-                    "example": "https://api.demeomods.xyz/v0/file/{hash}/{ModName}.dll"
-                }
-              }
+            "$ref": "#/components/schemas/file"
           }
+        }
+      },
+      "file": {
+        "title": "File",
+        "type": "object",
+        "description": "A file for a mod or mod version.",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "File hash as shown in MelonLoader"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL where the file can be downloaded from.",
+            "example": "https://api.demeomods.xyz/v0/file/{hash}/{ModName}.dll"
+          }
+        }
       }
+    }
   }
 }
