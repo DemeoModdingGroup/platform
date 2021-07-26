@@ -28,7 +28,6 @@
   "paths": {
     "/": {
       "get": {
-        "operationId": "getMetadata",
         "summary": "Get metadata from the root of the API",
         "tags": [
           "Metadata"
@@ -86,52 +85,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/mod"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/versions": {
-      "get": {
-        "tags": [
-          "Mods"
-        ],
-        "description": "Get latest versions for provided mods.",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "names",
-            "required": true,
-            "description": "The names of mods to get versions for.",
-            "example": "ModName1,ModName2",
-            "style": "form",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "includeUnapproved",
-            "required": false,
-            "description": "Whether or not to include unapproved versions.",
-            "schema": {
-              "type": "boolean",
-              "default": "false"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/modVersion"
-                  }
                 }
               }
             }
@@ -273,6 +226,7 @@
         }
       },
       "modRef": {
+        "title": "Mod Reference",
         "type": "object",
         "properties": {
           "modName": {
@@ -281,7 +235,7 @@
           },
           "version": {
             "type": "string",
-            "description": "Semver Constraint for the required version."
+            "description": "Semver constraint for the required version."
           }
         }
       }
