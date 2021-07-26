@@ -131,9 +131,6 @@
           "icon": {
             "type": "string",
             "description": "URL of the mod's icon."
-          },
-          "platforms": {
-
           }
         }
       },
