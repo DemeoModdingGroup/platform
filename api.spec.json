@@ -18,17 +18,17 @@
   "tags": [
     {
       "name": "Metadata",
-      "description": "Metadata related requests"
+      "description": "Metadata related requests."
     },
     {
       "name": "Mods",
-      "description": "Mod related requests"
+      "description": "Mod related requests."
     }
   ],
   "paths": {
     "/": {
       "get": {
-        "summary": "Get metadata from the root of the API",
+        "summary": "Get metadata from the root of the API.",
         "tags": [
           "Metadata"
         ],
@@ -44,7 +44,7 @@
         "tags": [
           "Mods"
         ],
-        "summary": "",
+        "summary": "List all mods and their versions.",
         "responses": {
           "200": {
             "description": "OK",
@@ -67,7 +67,7 @@
         "tags": [
           "Mods"
         ],
-        "description": "",
+        "description": "Get a specific Mod.",
         "parameters": [
           {
             "in": "path",
@@ -190,7 +190,7 @@
         "properties": {
           "hash": {
             "type": "string",
-            "description": "File hash as shown in MelonLoader"
+            "description": "File hash as shown in MelonLoader."
           },
           "url": {
             "type": "string",
@@ -214,11 +214,11 @@
           },
           "discord": {
             "type": "string",
-            "description": "The author's Discord UserId"
+            "description": "The author's Discord UserId."
           },
           "avatar": {
             "type": "string",
-            "description": "URL of the author's avatar"
+            "description": "URL of the author's avatar."
           }
         }
       },
@@ -228,7 +228,7 @@
         "properties": {
           "modName": {
             "type": "string",
-            "description": "Name of mod referenced"
+            "description": "Name of mod referenced."
           },
           "version": {
             "type": "string",
